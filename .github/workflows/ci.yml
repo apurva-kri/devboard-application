@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout/clone the code
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Debug
         run: echo "USERNAME=${{ vars.DOCKERHUB_USERNAME }}"
@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: true
