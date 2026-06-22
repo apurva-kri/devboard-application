@@ -22,14 +22,15 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Show Tag
-        run: echo "${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest"
+        run: |
+          echo "${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest"
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest
+          tags: twsdocker1/devboard-application-fe-master:latest
         
       
 
