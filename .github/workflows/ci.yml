@@ -27,5 +27,8 @@ jobs:
           context: ./frontend
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest
+        
+      - name: Show Tag
+        run: echo "${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest"
 
 
