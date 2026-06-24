@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        run: actions/checkout@v7
+        uses: actions/checkout@v7
       
       # Step 2: Provision the specified Node.js environment
       - name: Set up Node.js
