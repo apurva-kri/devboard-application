@@ -43,6 +43,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v7 
         with:
+          context: ./frontend
           push: true
           tags: twsdocker1/devboard-application-fe-master:latest  #username/app:latest
 
