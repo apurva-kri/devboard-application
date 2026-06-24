@@ -19,14 +19,16 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm' # Automates npm dependency caching to speed up workflows
-
+          
     # Step 3: Clean install dependencies using package-lock.json
       - name: Install dependencies
         run: npm ci
+        working-directory: frontend
 
       - name: run linter
         run: npm run lint
-
+        working-directory: frontend
+        
     # Step 5: Run your test suite
       - name: Run tests
         run: npm test
