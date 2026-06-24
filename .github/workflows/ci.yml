@@ -41,10 +41,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@v7 
         with:
           push: true
-          tags: twsdocker1/devboard-application-fe-master:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest  #username/app:latest
 
 
   #backend:
