@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v7 
         with:
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest  #username/app:latest
+          tags: twsdocker1/devboard-application-fe-master:latest  #username/app:latest
 
 
   #backend:
