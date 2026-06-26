@@ -96,4 +96,7 @@ jobs:
 
 
 
-  #deploy:
+  deploy:
+    needs: [frontend,backend]
+    uses: ./.github/workflows/cd.yml
+    secrets: inherit
