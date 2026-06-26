@@ -97,6 +97,6 @@ jobs:
 
 
   deploy:
-    needs: [frontend,backend]
+    needs: [frontend,backend]     #first fend and bend will run then only deploy will run
     uses: ./.github/workflows/cd.yml
     secrets: inherit
