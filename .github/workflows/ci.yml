@@ -45,7 +45,7 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: twsdocker1/devboard-application-frontend:latest  #username/app:latest make sure the docker hub Access Token updated
+          tags: twsdocker1/devboard-application-frontend:v1.0.0  #username/app:latest make sure the docker hub Access Token updated
 
 
   backend:
