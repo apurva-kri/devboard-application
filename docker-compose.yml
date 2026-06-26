@@ -44,7 +44,7 @@ services:
 
   frontend:
     build: ./frontend
-    image: trainwithshubham/devboard-frontend:${IMAGE_TAG:-latest}
+    image: trainwithshubham/devboard-frontend:v1.0.0
     depends_on:
       - backend
     ports:
