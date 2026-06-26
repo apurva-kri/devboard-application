@@ -45,7 +45,7 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: twsdocker1/devboard-application-frontend:latest  #username/app:latest make sure the docker hub Access Token updated
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-frontend:latest  #username/app:latest make sure the docker hub Access Token updated
 
 
   backend:
@@ -92,7 +92,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: twsdocker1/devboard-application-backend:latest  #username/app:latest make sure the docker hub Access Token updated
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-backend:latest  #username/app:latest make sure the docker hub Access Token updated
 
 
 
