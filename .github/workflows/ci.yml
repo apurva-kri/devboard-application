@@ -52,7 +52,7 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: twsdocker1/devboard-application-fe-master:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-fe-master:latest
         
       
 
