@@ -85,7 +85,7 @@ jobs:
         uses: docker/login-action@v4
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }} #DockerHub token generated  
 
       - name: Build and push
         uses: docker/build-push-action@v7 
