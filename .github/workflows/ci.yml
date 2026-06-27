@@ -3,14 +3,22 @@ name: CI
 
 on:
   push:
+<<<<<<< HEAD
     branches: [master]
 
 jobs:
   code-lint: 
+=======
+    branches: [advanced]
+
+jobs:
+  frontend:
+>>>>>>> advanced
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v7
+<<<<<<< HEAD
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -57,3 +65,90 @@ jobs:
       
 
 
+=======
+      
+      # Step 2: Provision the specified Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Automates npm dependency caching to speed up workflows
+          cache-dependency-path: frontend/package-lock.json
+    # Step 3: Clean install dependencies using package-lock.json
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend
+
+      - name: run linter
+        run: npm run lint
+        working-directory: frontend
+
+    # Step 5: Run your test suite
+      - name: Run tests
+        run: npm run test
+        working-directory: frontend
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}  #Tocken generated form DockerHub
+
+      - name: Build and push
+        uses: docker/build-push-action@v7 
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-frontend:latest  #username/app:latest make sure the docker hub Access Token updated
+
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v7
+      
+      # Step 2: Provision the specified Node.js environment
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.23' # Version or version range of Go to use
+
+          # Path to go.mod, go.work, .go-version, or .tool-versions file
+          # Note: if both go-version and go-version-file are provided, go-version takes precedence.
+          go-version-file: 'go.mod'
+
+           # Set this option if you want the action to check for the latest available version
+           # Default: false
+          cache-dependency-path: go.sum # Path to dependency files for caching
+   
+      - name: run go formatter #linting
+        run: go fmt
+        working-directory: backend
+
+      - name: run go vet  #linting
+        run: go vet 
+        working-directory: backend
+
+    # Step 5: Run your test suite
+      - name: Run tests
+        run: go test
+        working-directory: backend
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }} #DockerHub token generated  
+
+      - name: Build and push
+        uses: docker/build-push-action@v7 
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-application-backend:latest  #username/app:latest make sure the docker hub Access Token updated
+  deploy:
+    needs: [frontend,backend]     #first fend and bend will run then only deploy will run
+    uses: ./.github/workflows/cd.yml
+    secrets: inherit
+>>>>>>> advanced
